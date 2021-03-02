@@ -12,7 +12,11 @@ def main():
     while "_" in current_list:
         print_board(current_list)
         print()
-        guess_letter()
+        check_letter(secret_word, guess_letter(), current_list)
+
+    print_board(current_list)
+    print()
+    print("Congratulations, the word was " + secret_word)
 
 
 def print_board(current_list):
@@ -23,6 +27,18 @@ def print_board(current_list):
 def guess_letter():
     guess = input("Guess a letter ")
     return guess
+
+def check_letter(secret_word, guess,current_list):
+    k = 0;
+    while k < len(secret_word):
+        if guess == secret_word[k]:
+            current_list[k] = guess
+            k = k + 1
+        else:
+            k = k + 1
+
+    if guess not in secret_word:
+        print (guess + " is not in the secret word")
 
 
 if __name__ == "__main__":
