@@ -8,11 +8,16 @@ def main():
     print('Welcome to Word Up')
     secret_word = getpass('Enter the secret word')
     current_list = ["_"] * len(secret_word)
+    letter_bank = []
+    guess = ""
 
     while "_" in current_list:
         print_board(current_list)
+        get_letter(guess, letter_bank)
+        print_letter_bank(letter_bank)
         print()
-        check_letter(secret_word, guess_letter(), current_list)
+        guess = input("Guess a letter ")
+        check_letter(secret_word, guess, current_list)
 
     print_board(current_list)
     print()
@@ -23,10 +28,6 @@ def print_board(current_list):
     for i in current_list:
         print(i, end=" ")
 
-
-def guess_letter():
-    guess = input("Guess a letter ")
-    return guess
 
 def check_letter(secret_word, guess,current_list):
     k = 0;
@@ -39,6 +40,17 @@ def check_letter(secret_word, guess,current_list):
 
     if guess not in secret_word:
         print (guess + " is not in the secret word")
+
+
+def get_letter(guess, letter_bank):
+    letter_bank.append(guess)
+
+
+def print_letter_bank(letter_bank):
+    print()
+    print("Used Letters:" ,end="")
+    for j in letter_bank:
+        print (j,  end=" ")
 
 
 if __name__ == "__main__":
